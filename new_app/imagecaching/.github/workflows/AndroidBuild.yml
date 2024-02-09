@@ -1,28 +1,28 @@
 name: AndroidBuild
+
 on:
   pull_request:
     branches:
-      [master]
+      - master
   push:
     branches:
-      -[master]
+      - master
+
 jobs:
   build:
-    runs-on: windows-letest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name:  Setup java jdk
+      - name: Setup Java JDK
         uses: actions/setup-java@v4.0.0
 
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Upload Build Artifect
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v4.3.1
         with:
           name: imagecaching.apk
-          path:  app/build/outputs/apk/app-debug.apk
-          
-
+          path: app/build/outputs/apk/app-debug.apk
